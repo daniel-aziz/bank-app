@@ -16,11 +16,10 @@ import java.util.Arrays;
 import java.util.UUID;
 
 
-//@Component
+@Component
 @RequiredArgsConstructor
 public class Test1 implements CommandLineRunner {
     private final AccountRepository accountRepository;
-
     private final ClientRepository clientRepository;
     private final BankRepository bankRepository;
 

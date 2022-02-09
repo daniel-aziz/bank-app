@@ -34,7 +34,7 @@ public class ClientController {
     public ResponseEntity<?> removeAccount(@PathVariable long nationalId, @PathVariable long accountId) {
         Client client = clientRepository.findClientByNationalId(nationalId);
         if (client == null) return new ResponseEntity<>(SysMsg.NOT_FOUND, HttpStatus.OK);
-        System.out.println(client.getAccounts());
+        accountRepository.delete(accountRepository.findAccountByAccountNumber(accountId));
         client.getAccounts().removeIf(account -> account.getAccountNumber() == accountId);
         clientRepository.save(client);
         return new ResponseEntity<>(SysMsg.SUCCESSFUL, HttpStatus.OK);
