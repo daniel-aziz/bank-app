@@ -29,9 +29,17 @@ public class Test1 implements CommandLineRunner {
         Account account = Account.builder()
                 .id(UUID.randomUUID().toString())
                 .currentAmount(0)
+                .accountNumber(111111111)
+                .status(Status.ALLOWED).build();
+
+        Account account2  = Account.builder()
+                .id(UUID.randomUUID().toString())
+                .currentAmount(1000)
+                .accountNumber(111111112)
                 .status(Status.ALLOWED).build();
 
         accountRepository.save(account);
+        accountRepository.save(account2);
 
         Client client = Client.builder()
                 .id(UUID.randomUUID().toString())
@@ -41,7 +49,7 @@ public class Test1 implements CommandLineRunner {
                 .dateOfBirth(LocalDate.of(2000, 11, 8))
                 .nationality("Israel")
                 .clientType(ClientType.PLATINUM)
-                .accounts(Arrays.asList(account))
+                .accounts(Arrays.asList(account,account2))
                 .build();
 
     clientRepository.save(client);
