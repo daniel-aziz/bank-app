@@ -3,6 +3,7 @@ package com.jb.bankapp.CLR;
 import com.jb.bankapp.Beans.*;
 import com.jb.bankapp.Beans.Enums.ClientType;
 import com.jb.bankapp.Beans.Enums.Status;
+import com.jb.bankapp.Repositories.AccountRepository;
 import com.jb.bankapp.Repositories.BankRepository;
 import com.jb.bankapp.Repositories.ClientRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,8 @@ import java.util.UUID;
 //@Component
 @RequiredArgsConstructor
 public class Test1 implements CommandLineRunner {
+    private final AccountRepository accountRepository;
+
     private final ClientRepository clientRepository;
     private final BankRepository bankRepository;
 
@@ -26,8 +29,9 @@ public class Test1 implements CommandLineRunner {
         Account account = Account.builder()
                 .id(UUID.randomUUID().toString())
                 .currentAmount(0)
-                .client(Client.builder().nationalId(110101015L).build())
                 .status(Status.ALLOWED).build();
+
+        accountRepository.save(account);
 
         Client client = Client.builder()
                 .id(UUID.randomUUID().toString())
@@ -40,6 +44,7 @@ public class Test1 implements CommandLineRunner {
                 .accounts(Arrays.asList(account))
                 .build();
 
+    clientRepository.save(client);
 
         Bank bank = Bank.builder()
                 .id(UUID.randomUUID().toString())
