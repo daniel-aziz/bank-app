@@ -72,7 +72,7 @@ public class BankController {
     }
 
     @DeleteMapping("/removeClient/{branchCode}/{nationalId}")
-    public ResponseEntity<?> removeClient(@PathVariable int branchCode, @PathVariable long nationalId) {
+    public ResponseEntity<?> removeClient(@PathVariable int branchCode, @PathVariable String nationalId) {
         if (!clientRepository.existsByNationalId(nationalId) || !bankRepository.existsByBranchCode(branchCode))
             return new ResponseEntity<>(SysMsg.NOT_FOUND, HttpStatus.OK);
         Client client = clientRepository.findClientByNationalId(nationalId);

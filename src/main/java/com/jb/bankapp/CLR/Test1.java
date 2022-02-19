@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 
-@Component
+//@Component
 @RequiredArgsConstructor
 public class Test1 implements CommandLineRunner {
     private final AccountRepository accountRepository;
@@ -28,13 +28,13 @@ public class Test1 implements CommandLineRunner {
         Account account = Account.builder()
                 .id(UUID.randomUUID().toString())
                 .currentAmount(0)
-                .accountNumber(111111111)
+                .accountNumber("111111111")
                 .status(Status.ALLOWED).build();
 
         Account account2  = Account.builder()
                 .id(UUID.randomUUID().toString())
                 .currentAmount(1000)
-                .accountNumber(111111112)
+                .accountNumber("111111112")
                 .status(Status.ALLOWED).build();
 
         accountRepository.save(account);
@@ -44,11 +44,11 @@ public class Test1 implements CommandLineRunner {
                 .id(UUID.randomUUID().toString())
                 .firstName("Daniel")
                 .lastName("Kola")
-                .nationalId(1101010115)
+                .nationalId("1101010115")
                 .dateOfBirth(LocalDate.of(2000, 11, 8))
                 .nationality("Israel")
                 .clientType(ClientType.PLATINUM)
-                .accounts(Arrays.asList(account,account2))
+           //     .accounts(Arrays.asList(account,account2))
                 .build();
 
     clientRepository.save(client);
@@ -57,7 +57,8 @@ public class Test1 implements CommandLineRunner {
                 .id(UUID.randomUUID().toString())
                 .name("Yahav")
                 .city("TLV")
-                .clients(Arrays.asList(client)).branchCode(972).build();
+              //  .clients(Arrays.asList(client)).branchCode(972)
+                .build();
 
         bankRepository.save(bank);
 

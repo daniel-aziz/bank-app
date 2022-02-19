@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.ArrayList;
 
 
 @AllArgsConstructor
@@ -20,7 +20,7 @@ public class Client {
     private String id;
 
     @Indexed(unique = true)
-    private long nationalId;
+    private String nationalId;
 
     private String firstName;
     private String lastName;
@@ -29,8 +29,7 @@ public class Client {
     private ClientType clientType;
 
     @DBRef
-    @Singular
-    private List<Account> accounts;
+    private ArrayList<Account> accounts;
 
 
 }

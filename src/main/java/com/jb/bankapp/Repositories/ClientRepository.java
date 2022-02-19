@@ -6,8 +6,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface ClientRepository extends MongoRepository<Client, String> {
 
-    Client findClientByNationalId(long nationalId);
+    Client findClientByNationalId(String nationalId);
 
-    boolean existsByNationalId(long nationalId);
+    boolean existsByNationalId(String nationalId);
 
 }

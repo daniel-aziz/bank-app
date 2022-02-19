@@ -18,7 +18,7 @@ public class Account {
     private String id;
 
     @Indexed(unique = true)
-    private long accountNumber;
+    private String accountNumber;
 
     private double currentAmount = 0;
     private Status status;

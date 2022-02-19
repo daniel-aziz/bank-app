@@ -9,7 +9,7 @@ import java.util.Collections;
 
 
 @Configuration
-public class CORSConfig {
+public class CorsConfig {
     @Bean
     public CorsFilter corsFilter(){
 

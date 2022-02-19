@@ -16,14 +16,14 @@ public class AccountController {
     private final AccountRepository accountRepository;
 
     @GetMapping("/{accountNumber}/currentAmount")
-    public ResponseEntity<?> currentAmount(@PathVariable long accountNumber) {
+    public ResponseEntity<?> currentAmount(@PathVariable String accountNumber) {
         Account account = accountRepository.findAccountByAccountNumber(accountNumber);
         if (account == null) return new ResponseEntity<>(SysMsg.NOT_FOUND, HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(account.getCurrentAmount(), HttpStatus.OK);
     }
 
     @PutMapping("/{accountNumber}/deposit/{amount}")
-    public ResponseEntity<?> deposit(@PathVariable long accountNumber, @PathVariable double amount) {
+    public ResponseEntity<?> deposit(@PathVariable String accountNumber, @PathVariable double amount) {
         Account account = accountRepository.findAccountByAccountNumber(accountNumber);
         if (account == null) return new ResponseEntity<>(SysMsg.NOT_FOUND, HttpStatus.BAD_REQUEST);
         account.setCurrentAmount(account.getCurrentAmount() + amount);
@@ -32,7 +32,7 @@ public class AccountController {
     }
 
     @PutMapping("/{accountNumber}/withdraw/{amount}")
-    public ResponseEntity<?> withdraw(@PathVariable long accountNumber, @PathVariable double amount) {
+    public ResponseEntity<?> withdraw(@PathVariable String accountNumber, @PathVariable double amount) {
         Account account = accountRepository.findAccountByAccountNumber(accountNumber);
         if (account == null) return new ResponseEntity<>(SysMsg.NOT_FOUND, HttpStatus.BAD_REQUEST);
         if (account.getCurrentAmount() - amount >= 0) {
@@ -46,7 +46,7 @@ public class AccountController {
 
 
     @PutMapping("/{accountNumber}/changeStatus/{status}")
-    public ResponseEntity<?> changeStatus(@PathVariable long accountNumber, @PathVariable Status status) {
+    public ResponseEntity<?> changeStatus(@PathVariable String accountNumber, @PathVariable Status status) {
         Account account = accountRepository.findAccountByAccountNumber(accountNumber);
         if (account == null) return new ResponseEntity<>(SysMsg.NOT_FOUND, HttpStatus.BAD_REQUEST);
         account.setStatus(status);
